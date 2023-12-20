@@ -59,6 +59,7 @@ Green	/home/quinten/haskell/aoc23/app/Day2.hs	6;"	C
 Hand	/home/quinten/haskell/aoc23/app/Day7.hs	12;"	t
 HandType	/home/quinten/haskell/aoc23/app/Day7.hs	11;"	t
 HeatMap	/home/quinten/haskell/aoc23/app/Day17.hs	24;"	t
+High	/home/quinten/haskell/aoc23/app/Day20.hs	3;"	C
 HighCard	/home/quinten/haskell/aoc23/app/Day7.hs	11;"	C
 Instruction	/home/quinten/haskell/aoc23/app/Day15.hs	45;"	t
 Instruction	/home/quinten/haskell/aoc23/app/Day18.hs	18;"	t
@@ -74,6 +75,7 @@ Label	/home/quinten/haskell/aoc23/app/Day15.hs	41;"	t
 Layout	/home/quinten/haskell/aoc23/app/Day16.hs	19;"	t
 LightDir	/home/quinten/haskell/aoc23/app/Day16.hs	14;"	t
 LightState	/home/quinten/haskell/aoc23/app/Day16.hs	22;"	t
+Low	/home/quinten/haskell/aoc23/app/Day20.hs	3;"	C
 M	/home/quinten/haskell/aoc23/app/Day19.hs	21;"	C
 Main	/home/quinten/haskell/aoc23/app/Main.hs	1;"	m
 MirrorL	/home/quinten/haskell/aoc23/app/Day16.hs	15;"	C
@@ -100,6 +102,7 @@ Pos	/home/quinten/haskell/aoc23/app/Day18.hs	15;"	t
 Pos	/home/quinten/haskell/aoc23/app/Day3.hs	6;"	t
 Position	/home/quinten/haskell/aoc23/app/Day8.hs	15;"	t
 Problem	/home/quinten/haskell/aoc23/app/Problem.hs	1;"	m
+Pulse	/home/quinten/haskell/aoc23/app/Day20.hs	3;"	t
 Queen	/home/quinten/haskell/aoc23/app/Day7.hs	10;"	C
 Queue	/home/quinten/haskell/aoc23/app/Day17.hs	27;"	t
 R	/home/quinten/haskell/aoc23/app/Day16.hs	14;"	C
