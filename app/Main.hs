@@ -15,7 +15,7 @@ module Main where
 -- makeHeatMap :: [Int] -> HeatMap
 -- makeHeatMap ns = M.fromList $ concat [ [ ((y,x),ns!!(y*140+x)) | x <- [0..140]] | y <- [0..140]]
 
-import Day19 (answer2)
+import Day21 (answer1)
 
 main :: IO ()
-main = answer2 True >>= print
+main = answer1 True >>= print

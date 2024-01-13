@@ -68,9 +68,9 @@ shortestPath = do
             r <- use refs
             tick += 1
             c <- use tick
-            when (c `mod` 10000 == 0) $ do
-                liftIO clearScreen
-                liftIO . putStr $ drawPath (path node r) (S.map toCoord v)
+            -- when (c `mod` 10000 == 0) $ do
+            --     liftIO clearScreen
+            --     liftIO . putStr $ drawPath (path node r) (S.map toCoord v)
             queue %= Q.deleteMin
             if toCoord node == e && counter node > 2 then do
                 liftIO clearScreen
