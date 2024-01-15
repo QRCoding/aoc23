@@ -62,3 +62,7 @@ result (g,p) = S.size . (^. reach) . execState (walk g) $ initialState p
 
 answer1 :: Bool -> IO Int
 answer1 = answer 21 $ result . parseInput 
+
+-- Part 2
+
+
