@@ -15,16 +15,7 @@ module Main where
 --makeHeatMap :: [Int] -> HeatMap
 --makeHeatMap ns = M.fromList $ concat [ [ ((y,x),ns!!(y*140+x)) | x <- [0..140]] | y <- [0..140]]
 
--- import Day19 (answer2)
-
--- main :: IO ()
--- main = answer2 True >>= print
-
-import Day20
-import Control.Monad.State
+import Day23 (answer1, answer2)
 
 main :: IO ()
-main =  do f <- readFile "data/day20input.txt" 
-           let h = makeHandler . parseInput $ f
-           r <- evalStateT pulses $ initialState h
-           print r
+main =  do answer2 True >>= print
