@@ -8,14 +8,11 @@ import qualified Data.Set as S
 import Data.Set (Set)
 import qualified Data.PSQueue as Q
 import Data.PSQueue (Binding((:->)), PSQ)
-import Control.Lens (use, (%=), (.=), makeLenses, (+=))
+import Control.Lens (use, (%=), makeLenses, (+=))
 import Control.Monad.State ( guard, when, liftIO, evalStateT, StateT )
 import Data.Maybe (mapMaybe)
 import Data.Char (digitToInt)
 import System.Console.ANSI (clearScreen)
-import System.Time.Extra (sleep)
-import GHC.Plugins (Direction)
-import Data.Time.Clock (getCurrentTime, UTCTime (utctDayTime), DiffTime)
 
 type Coord   = (Int, Int)
 data Dir     = U | D | L | R deriving (Eq, Show, Ord)
@@ -28,7 +25,7 @@ type Queue      = PSQ RefNode Int
 type Visited    = Set Node
 type Refs = Map Node Node
 
-data CrucibleState = CrucibleState {_time :: DiffTime , _tick :: Int, _refs :: Refs, _maxC :: Coord, _queue :: Queue, _visited :: Visited, _end :: Coord, _heatMap :: HeatMap }
+data CrucibleState = CrucibleState {_tick :: Int, _refs :: Refs, _queue :: Queue, _visited :: Visited, _end :: Coord, _heatMap :: HeatMap }
 
 makeLenses ''CrucibleState
 
@@ -40,12 +37,12 @@ toCoord (c,_,_) = c
 isVisited :: Visited -> Node -> Bool
 isVisited v n = n `S.member` v
 
-neighbors :: Node -> [Node]
-neighbors ((y,x),d,i) = case d of
-    U -> [((y,x-1),L,0),((y,x+1),R,0)] ++ [((y-1,x),U,i+1) | i /= 2]
-    D -> [((y,x-1),L,0),((y,x+1),R,0)] ++ [((y+1,x),D,i+1) | i /= 2]
-    L -> [((y+1,x),D,0),((y-1,x),U,0)] ++ [((y,x-1),L,i+1) | i /= 2]
-    R -> [((y+1,x),D,0),((y-1,x),U,0)] ++ [((y,x+1),R,i+1) | i /= 2]
+--neighbors :: Node -> [Node]
+--neighbors ((y,x),d,i) = case d of
+--    U -> [((y,x-1),L,0),((y,x+1),R,0)] ++ [((y-1,x),U,i+1) | i /= 2]
+--    D -> [((y,x-1),L,0),((y,x+1),R,0)] ++ [((y+1,x),D,i+1) | i /= 2]
+--    L -> [((y+1,x),D,0),((y-1,x),U,0)] ++ [((y,x-1),L,i+1) | i /= 2]
+--    R -> [((y+1,x),D,0),((y-1,x),U,0)] ++ [((y,x+1),R,i+1) | i /= 2]
 
 counter :: Node -> Int
 counter (_,_,c) = c
@@ -68,7 +65,7 @@ shortestPath = do
             r <- use refs
             tick += 1
             c <- use tick
-            when (c `mod` 10000 == 0) $ do
+            when (c `mod` 50000 == 0) $ do
                 liftIO clearScreen
                 liftIO . putStr $ drawPath (path node r) (S.map toCoord v)
             queue %= Q.deleteMin
@@ -102,10 +99,9 @@ initialState h = CrucibleState { _queue = Q.fromList [(((0,0),R,1),((0,0),R,1)) 
                                , _visited = S.empty
                                , _end = (140,140)
                                , _heatMap = h
-                               , _maxC = (0,0)
                                , _refs = M.empty
-                               , _tick = 0 
-                               , _time = 0}
+                               , _tick = 0 }
+
 minHeat :: HeatMap -> IO Int
 minHeat = evalStateT shortestPath . initialState
 

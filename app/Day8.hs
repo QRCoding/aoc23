@@ -8,12 +8,11 @@ import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.List.Split (splitOn)
 import Data.Maybe (fromMaybe)
-import Control.Monad.State.Strict
 
 data Instruction = L | R deriving (Eq, Show)
 type Network     = Map String (String, String)
 type Position    = String
-type NetworkData = ([Instruction], Int, [Position], Network, Int)
+-- type NetworkData = ([Instruction], Int, [Position], Network, Int)
 
 -- Parsing input
 
@@ -41,7 +40,7 @@ findEnd :: Position -> [Instruction] -> Int -> Network -> Maybe (Int, Position)
 findEnd _ [] _ _         = Nothing
 findEnd p (i:is) steps n = case move i p n of
     Nothing    -> Nothing
-    Just p'    -> if last p' == 'Z' then Just $ (steps + 1, p')
+    Just p'    -> if last p' == 'Z' then Just (steps + 1, p')
                   else findEnd p' is (steps + 1) n
 
 totalSteps :: [Position] -> ([Instruction], Network) -> [(Int,Position)]
@@ -58,5 +57,5 @@ firstCycle (i,n) = totalSteps (startPos n) (i,n)
 lcmAll :: [Int] -> Int
 lcmAll = foldl1 lcm
 
-answer1 :: Bool -> IO Int 
+answer1 :: Bool -> IO Int
 answer1 = answer 8 $ lcmAll . map fst . firstCycle . parseInput

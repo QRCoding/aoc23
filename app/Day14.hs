@@ -1,4 +1,4 @@
-module Day14 (answer1) where
+module Day14 (answer1, cycleLoads) where
 
 import Data.List (groupBy, transpose)
 import Problem (answer)

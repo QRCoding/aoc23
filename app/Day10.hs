@@ -4,7 +4,7 @@ import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Bifunctor (bimap)
 import Data.Maybe (fromMaybe)
-import Data.List (findIndex, elemIndex)
+--import Data.List (findIndex, elemIndex)
 
 import Problem (answer)
 
@@ -12,18 +12,15 @@ data Direction = N | E | S | W deriving (Eq, Show, Ord)
 type PipeMap   = Pos -> Char
 type Pos       = (Int, Int)
 
-input :: IO String
-input = readFile "data/day10input.txt"
-
 parseInput :: String -> PipeMap
 parseInput s (y,x) = (lines s!!y)!!x
 
 -- Part 1
 
-startPos :: String -> Pos
-startPos s = (y,x)
-    where y = fromMaybe 0 $ findIndex ('S' `elem`) (lines s)
-          x = fromMaybe 0 . elemIndex 'S' . head . filter ('S' `elem`) $ lines s
+-- startPos :: String -> Pos
+-- startPos s = (y,x)
+--    where y = fromMaybe 0 $ findIndex ('S' `elem`) (lines s)
+--          x = fromMaybe 0 . elemIndex 'S' . head . filter ('S' `elem`) $ lines s
 
 pipes :: Map (Direction, Char) Direction
 pipes = Map.fromList [((N, 'F'), E)

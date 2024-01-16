@@ -1,5 +1,4 @@
 {-# LANGUAGE TemplateHaskell, RankNTypes #-}
-{-# LANGUAGE OverloadedRecordDot #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use newtype instead of data" #-}
 {-# LANGUAGE FlexibleContexts #-}
@@ -8,7 +7,7 @@ module Day15 where
 import Data.Char (ord, digitToInt)
 import Data.List.Split (splitOn)
 import Problem (answer)
-import Control.Monad.State (State, execState, put, get)
+import Control.Monad.State (State, execState)
 import Control.Lens
     ( makeLenses,
       (^.),
@@ -17,7 +16,6 @@ import Control.Lens
       Traversal', ix, (%~) )
 import Control.Lens.Setter ((%=))
 import Data.List (findIndex)
-import Control.Lens.Combinators (element)
 
 -- Part 1
 
